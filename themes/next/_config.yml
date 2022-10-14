@@ -704,8 +704,8 @@ matomo:
 # You can visit https://www.leancloud.cn to get AppID and AppKey.
 leancloud_visitors:
   enable: false
-  app_id: # <your app id>
-  app_key: # <your app key>
+  app_id: 84bkhVjJvN1dsJlyxRblDKO9-gzGzoHsz
+  app_key: EXDMnlCsJ6NZ58j21RvqsmDk
   # Required for apps from CN region
   server_url: # <your server url>
   # Dependencies: https://github.com/theme-next/hexo-leancloud-counter-security
