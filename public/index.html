@@ -122,7 +122,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/blogs/archives/">
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -157,6 +157,169 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://zhangzhaopds.github.io/blogs/2023/02/17/RxSwiftOperators/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blogs/images/avatar.PNG">
+      <meta itemprop="name" content="张子布">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhangzhaopds">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | zhangzhaopds">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blogs/2023/02/17/RxSwiftOperators/" class="post-title-link" itemprop="url">RxSwift操作符</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2023-02-17 16:16:30 / Modified: 16:53:48" itemprop="dateCreated datePublished" datetime="2023-02-17T16:16:30+08:00">2023-02-17</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a><a target="_blank" rel="noopener" href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree.html">决策树</a></h1><h3 id="我想要创建一个-Observable"><a href="#我想要创建一个-Observable" class="headerlink" title="我想要创建一个 Observable"></a>我想要创建一个 Observable</h3><ul>
+<li>产生特定的一个元素：<a href="">just</a><ul>
+<li>经过一段延时：<a href="">timer</a></li>
+</ul>
+</li>
+<li>从一个序列拉取元素：<a href="">from</a></li>
+<li>重复的产生某一个元素：<a href="">repeatElement</a></li>
+<li>存在自定义逻辑：<a href="">create</a></li>
+<li>每次订阅时产生：<a href="">deferred</a></li>
+<li>每隔一段时间，发出一个元素：<a href="">interval</a><ul>
+<li>在一段延时后：<a href="">timer</a></li>
+</ul>
+</li>
+<li>一个空序列，只有一个完成事件：<a href="">empty</a></li>
+<li>一个任何事件都没有产生的序列：<a href="">never</a></li>
+</ul>
+<h3 id="我想要创建一个-Observable-通过组合其他的-Observables"><a href="#我想要创建一个-Observable-通过组合其他的-Observables" class="headerlink" title="我想要创建一个 Observable 通过组合其他的 Observables"></a>我想要创建一个 Observable 通过组合其他的 Observables</h3><ul>
+<li>任意一个 Observable 产生了元素，就发出这个元素：<a href="">merge</a></li>
+<li>让这些 Observables 一个接一个的发出元素，当上一个 Observable 元素发送完毕后，下一个 Observable 才能开始发出元素：<a href="">concat</a></li>
+<li>组合多个 Observables 的元素<ul>
+<li>当每一个 Observable 都发出一个新的元素：<a href="">zip</a></li>
+<li>当任意一个 Observable 发出一个新的元素：<a href="">combineLatest</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="我想要转换-Observable-的元素后，再将它们发出来"><a href="#我想要转换-Observable-的元素后，再将它们发出来" class="headerlink" title="我想要转换 Observable 的元素后，再将它们发出来"></a>我想要转换 Observable 的元素后，再将它们发出来</h3><ul>
+<li>对每个元素直接转换：<a href="">map</a></li>
+<li>转换到另一个 Observable：<a href="">flatMap</a><ul>
+<li>只接收最新的元素转换的 Observable 所产生的元素：<a href="">flatMapLatest</a></li>
+<li>每一个元素转换的 Observable 按顺序产生元素：<a href="">concatMap</a></li>
+</ul>
+</li>
+<li>基于所有遍历过的元素： <a href="">scan</a></li>
+</ul>
+<h3 id="我想要将产生的每一个元素，拖延一段时间后再发出：delay"><a href="#我想要将产生的每一个元素，拖延一段时间后再发出：delay" class="headerlink" title="我想要将产生的每一个元素，拖延一段时间后再发出：delay"></a>我想要将产生的每一个元素，拖延一段时间后再发出：<a href="">delay</a></h3><h3 id="我想要将产生的事件封装成元素发送出来"><a href="#我想要将产生的事件封装成元素发送出来" class="headerlink" title="我想要将产生的事件封装成元素发送出来"></a>我想要将产生的事件封装成元素发送出来</h3><ul>
+<li>将他们封装成 Event<Element>：<a href="">materialize</a><ul>
+<li>然后解封出来：<a href="">dematerialize</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="我想要忽略掉所有的-next-事件，只接收-completed-和-error-事件：ignoreElements"><a href="#我想要忽略掉所有的-next-事件，只接收-completed-和-error-事件：ignoreElements" class="headerlink" title="我想要忽略掉所有的 next 事件，只接收 completed 和 error 事件：ignoreElements"></a>我想要忽略掉所有的 next 事件，只接收 completed 和 error 事件：<a href="">ignoreElements</a></h3><h3 id="我想创建一个新的-Observable-在原有的序列前面加入一些元素：startWith"><a href="#我想创建一个新的-Observable-在原有的序列前面加入一些元素：startWith" class="headerlink" title="我想创建一个新的 Observable 在原有的序列前面加入一些元素：startWith"></a>我想创建一个新的 Observable 在原有的序列前面加入一些元素：<a href="">startWith</a></h3><h3 id="我想从-Observable-中收集元素，缓存这些元素之后在发出：buffer"><a href="#我想从-Observable-中收集元素，缓存这些元素之后在发出：buffer" class="headerlink" title="我想从 Observable 中收集元素，缓存这些元素之后在发出：buffer"></a>我想从 Observable 中收集元素，缓存这些元素之后在发出：<a href="">buffer</a></h3><h3 id="我想将-Observable-拆分成多个-Observables：window"><a href="#我想将-Observable-拆分成多个-Observables：window" class="headerlink" title="我想将 Observable 拆分成多个 Observables：window"></a>我想将 Observable 拆分成多个 Observables：<a href="">window</a></h3><ul>
+<li>基于元素的共同特征：<a href="">groupBy</a></li>
+</ul>
+<h3 id="我想只接收-Observable-中特定的元素"><a href="#我想只接收-Observable-中特定的元素" class="headerlink" title="我想只接收 Observable 中特定的元素"></a>我想只接收 Observable 中特定的元素</h3><ul>
+<li>发出唯一的元素：<a href="">single</a></li>
+</ul>
+<h3 id="我想重新从-Observable-中发出某些元素"><a href="#我想重新从-Observable-中发出某些元素" class="headerlink" title="我想重新从 Observable 中发出某些元素"></a>我想重新从 Observable 中发出某些元素</h3><ul>
+<li>通过判定条件过滤出一些元素：<a href="">filter</a></li>
+<li>仅仅发出头几个元素：<a href="">take</a></li>
+<li>仅仅发出尾部的几个元素：<a href="">takeLast</a></li>
+<li>仅仅发出第 n 个元素：<a href="">elementAt</a></li>
+<li>跳过头几个元素<ul>
+<li>跳过头 n 个元素：<a href="">skip</a></li>
+<li>跳过头几个满足判定的元素：<a href="">skipWhile</a>，<a href="">skipWhileWithIndex</a></li>
+<li>跳过某段时间内产生的头几个元素：<a href="">skip</a></li>
+<li>跳过头几个元素直到另一个 Observable 发出一个元素：<a href="">skipUntil</a></li>
+</ul>
+</li>
+<li>只取头几个元素<ul>
+<li>只取头几个满足判定的元素：<a href="">takeWhile</a>，<a href="">takeWhileWithIndex</a></li>
+<li>只取某段时间内产生的头几个元素：<a href="">take</a></li>
+<li>只取头几个元素直到另一个 Observable 发出一个元素：<a href="">takeUntil</a></li>
+</ul>
+</li>
+<li>周期性的对 Observable 抽样：<a href="">sample</a></li>
+<li>发出那些元素，这些元素产生后的特定的时间内，没有新的元素产生：<a href="">debounce</a></li>
+<li>直到元素的值发生变化，才发出新的元素：<a href="">distinctUntilChanged</a><ul>
+<li>并提供元素是否相等的判定函数：<a href="">distinctUntilChanged</a></li>
+</ul>
+</li>
+<li>在开始发出元素时，延时后进行订阅：<a href="">delaySubscription</a></li>
+</ul>
+<h3 id="我想要从一些-Observables-中，只取第一个产生元素的-Observable：amb"><a href="#我想要从一些-Observables-中，只取第一个产生元素的-Observable：amb" class="headerlink" title="我想要从一些 Observables 中，只取第一个产生元素的 Observable：amb"></a>我想要从一些 Observables 中，只取第一个产生元素的 Observable：<a href="">amb</a></h3><h3 id="我想评估-Observable-的全部元素"><a href="#我想评估-Observable-的全部元素" class="headerlink" title="我想评估 Observable 的全部元素"></a>我想评估 Observable 的全部元素</h3><ul>
+<li>并且对每个元素应用聚合方法，待所有元素都应用聚合方法后，发出结果：<a href="">reduce</a></li>
+<li>并且对每个元素应用聚合方法，每次应用聚合方法后，发出结果：<a href="">scan</a></li>
+</ul>
+<h3 id="我想把-Observable-转换为其他的数据结构：as…"><a href="#我想把-Observable-转换为其他的数据结构：as…" class="headerlink" title="我想把 Observable 转换为其他的数据结构：as…"></a>我想把 Observable 转换为其他的数据结构：<a href="">as…</a></h3><h3 id="我想在某个-Scheduler-应用操作符：subscribeOn"><a href="#我想在某个-Scheduler-应用操作符：subscribeOn" class="headerlink" title="我想在某个 Scheduler 应用操作符：subscribeOn"></a>我想在某个 Scheduler 应用操作符：<a href="">subscribeOn</a></h3><ul>
+<li>在某个 Scheduler 监听：<a href="">observeOn</a></li>
+</ul>
+<h3 id="我想要-Observable-发生某个事件时-采取某个行动：do"><a href="#我想要-Observable-发生某个事件时-采取某个行动：do" class="headerlink" title="我想要 Observable 发生某个事件时, 采取某个行动：do"></a>我想要 Observable 发生某个事件时, 采取某个行动：<a href="">do</a></h3><h3 id="我想要-Observable-发出一个-error-事件：error"><a href="#我想要-Observable-发出一个-error-事件：error" class="headerlink" title="我想要 Observable 发出一个 error 事件：error"></a>我想要 Observable 发出一个 error 事件：<a href="">error</a></h3><ul>
+<li>如果规定时间内没有产生元素：<a href="">timeout</a></li>
+</ul>
+<h3 id="我想要-Observable-发生错误时，优雅的恢复"><a href="#我想要-Observable-发生错误时，优雅的恢复" class="headerlink" title="我想要 Observable 发生错误时，优雅的恢复"></a>我想要 Observable 发生错误时，优雅的恢复</h3><ul>
+<li>如果规定时间内没有产生元素，就切换到备选 Observable ：<a href="">timeout</a></li>
+<li>如果产生错误，将错误替换成某个元素 ：<a href="">catchErrorJustReturn</a></li>
+<li>如果产生错误，就切换到备选 Observable ：<a href="">catchError</a></li>
+<li>如果产生错误，就重试 ：<a href="">retry</a></li>
+</ul>
+<h3 id="我创建一个-Disposable-资源，使它与-Observable-具有相同的寿命：using"><a href="#我创建一个-Disposable-资源，使它与-Observable-具有相同的寿命：using" class="headerlink" title="我创建一个 Disposable 资源，使它与 Observable 具有相同的寿命：using"></a>我创建一个 Disposable 资源，使它与 Observable 具有相同的寿命：<a href="">using</a></h3><h3 id="我创建一个-Observable，直到我通知它可以产生元素后，才能产生元素：publish"><a href="#我创建一个-Observable，直到我通知它可以产生元素后，才能产生元素：publish" class="headerlink" title="我创建一个 Observable，直到我通知它可以产生元素后，才能产生元素：publish"></a>我创建一个 Observable，直到我通知它可以产生元素后，才能产生元素：<a href="">publish</a></h3><ul>
+<li>并且，就算是在产生元素后订阅，也要发出全部元素：<a href="">replay</a></li>
+<li>并且，一旦所有观察者取消观察，他就被释放掉：<a href="">refCount</a></li>
+<li>通知它可以产生元素了：<a href="">connect</a></li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree.html">https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree.html</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -454,7 +617,7 @@
 <h4 id="7、本条款的变更"><a href="#7、本条款的变更" class="headerlink" title="7、本条款的变更"></a>7、本条款的变更</h4><p>我们可不时对服务条款作出变更并通过适当方式向您提示变更内容。您理解并同意，如果您在服务条款作出变更后继续使用服务，则视为接受该变更。</p>
 <h4 id="8、一般法律条款"><a href="#8、一般法律条款" class="headerlink" title="8、一般法律条款"></a>8、一般法律条款</h4><p>用户使用本产品和服务时，承诺准守当地法律法规，社会制度，国家利益，公民合法权益，公共秩序，社会道德风尚。不得利用本产品和服务违反法律和法规。<br>如出现纠纷，双方协商一致解决；如果双方无法通过协商解决，则双方同意由中国成都仲裁机构，在成都进行仲裁解决。</p>
 <p>上述条款是各方针对本文主题的全部协议，优先于并取代所有以前或同期对此类主题的书面或口头的规定或协议。<br>本协议中的标题仅为方便而设，在解释本协议时应被忽略。</p>
-<p>如您对本协议内容有任何疑问，可发邮件至邮箱（<a href="mailto:&#122;&#104;&#x61;&#x6e;&#103;&#x7a;&#x68;&#97;&#111;&#112;&#100;&#115;&#x40;&#105;&#x63;&#108;&#111;&#117;&#100;&#46;&#99;&#111;&#x6d;">&#122;&#104;&#x61;&#x6e;&#103;&#x7a;&#x68;&#97;&#111;&#112;&#100;&#115;&#x40;&#105;&#x63;&#108;&#111;&#117;&#100;&#46;&#99;&#111;&#x6d;</a>）。</p>
+<p>如您对本协议内容有任何疑问，可发邮件至邮箱（<a href="mailto:&#122;&#104;&#x61;&#x6e;&#103;&#122;&#x68;&#97;&#111;&#112;&#100;&#115;&#x40;&#105;&#x63;&#108;&#111;&#x75;&#100;&#46;&#99;&#x6f;&#x6d;">&#122;&#104;&#x61;&#x6e;&#103;&#122;&#x68;&#97;&#111;&#112;&#100;&#115;&#x40;&#105;&#x63;&#108;&#111;&#x75;&#100;&#46;&#99;&#x6f;&#x6d;</a>）。</p>
 
       
     </div>
@@ -528,7 +691,7 @@
 <h4 id="会收集的信息"><a href="#会收集的信息" class="headerlink" title="会收集的信息"></a>会收集的信息</h4><p>1、收集实现产品功能所必须的信息。例如手机型号、操作系统信息、位置信息、相册权限。<br>2、会收集信息只为提供更加个性化的服务和体验。例如你注册账号时的手机号码、邮箱、密码。<br>3、收集改善用户体验的信息。例如用户操作习惯。</p>
 <h4 id="信息的使用"><a href="#信息的使用" class="headerlink" title="信息的使用"></a>信息的使用</h4><p>1、实现产品功能。例如，操作系统信息是为了更好的适配您的手机。<br>2、体验的优化。例如，用户操作习惯，更好的设计应用布局和功能，优化使用体验。</p>
 <h4 id="您的选择"><a href="#您的选择" class="headerlink" title="您的选择"></a>您的选择</h4><p>1、用户操作习惯的信息搜集，您选择我们的软件，默认您允许我们搜集此信息，此信息不针对个人，不定位到个人。如果您不允许可停止软件的使用。<br>2、相册权限，位置信息，开始收集前会有提示，如果您不允许搜集，可能会影响一些功能的使用，你可以在应用或者手机设置中关闭。</p>
-<h4 id="我们的责任和保证"><a href="#我们的责任和保证" class="headerlink" title="我们的责任和保证"></a>我们的责任和保证</h4><p>我们有必要遵守相关法律义务，遵循相关法规要求，解决纠纷，防止欺诈和滥用。<br>我们保证不主动向第三方透漏用户的隐私信息，我们不针对单个个人的隐私信息进行分析，我们将尽力保护用户的隐私信息安全。<br>如果出现管理变更或软件出售，我们可以在保证安全的情况下向第三方共享您的信息，该第三方有权在符合《隐私权政策》条款的情况下使用该信息。<br>我们有可能适时修订此政策内容，如果有修订后继续使用我们的服务，即表示同意修订的隐私政策。<br>如果您对本政策有疑问你可以通过<a href="mailto:&#x7a;&#104;&#97;&#x6e;&#103;&#122;&#x68;&#97;&#111;&#112;&#x64;&#x73;&#x40;&#105;&#x63;&#x6c;&#111;&#x75;&#x64;&#46;&#x63;&#111;&#109;">&#x7a;&#104;&#97;&#x6e;&#103;&#122;&#x68;&#97;&#111;&#112;&#x64;&#x73;&#x40;&#105;&#x63;&#x6c;&#111;&#x75;&#x64;&#46;&#x63;&#111;&#109;</a>联系我们，我们将尽快审核涉及的问题，并予以回复。</p>
+<h4 id="我们的责任和保证"><a href="#我们的责任和保证" class="headerlink" title="我们的责任和保证"></a>我们的责任和保证</h4><p>我们有必要遵守相关法律义务，遵循相关法规要求，解决纠纷，防止欺诈和滥用。<br>我们保证不主动向第三方透漏用户的隐私信息，我们不针对单个个人的隐私信息进行分析，我们将尽力保护用户的隐私信息安全。<br>如果出现管理变更或软件出售，我们可以在保证安全的情况下向第三方共享您的信息，该第三方有权在符合《隐私权政策》条款的情况下使用该信息。<br>我们有可能适时修订此政策内容，如果有修订后继续使用我们的服务，即表示同意修订的隐私政策。<br>如果您对本政策有疑问你可以通过<a href="mailto:&#x7a;&#104;&#97;&#110;&#103;&#122;&#x68;&#x61;&#x6f;&#112;&#x64;&#x73;&#x40;&#x69;&#x63;&#x6c;&#111;&#x75;&#x64;&#x2e;&#99;&#x6f;&#x6d;">&#x7a;&#104;&#97;&#110;&#103;&#122;&#x68;&#x61;&#x6f;&#112;&#x64;&#x73;&#x40;&#x69;&#x63;&#x6c;&#111;&#x75;&#x64;&#x2e;&#99;&#x6f;&#x6d;</a>联系我们，我们将尽快审核涉及的问题，并予以回复。</p>
 
       
     </div>
@@ -557,7 +720,7 @@
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
