@@ -24,7 +24,7 @@ tags:
 
 1. Download and install **iNavMock** app to your macOS device. [Download iNavMock](https://apps.apple.com/app/id6459020120)
 
-2. Download and install the device connection tool **Runner** to your macOS device. iNavMock is not directly connected to the phone, so it needs to be used in conjunction with the Runer. [Download Runner](https://zhangzhaopds.oss-cn-beijing.aliyuncs.com/Runner.dmg)
+2. Download and install the device connection tool **Runner** to your macOS device. iNavMock is not directly connected to the phone, so it needs to be used in conjunction with the Runner. [Download Runner](https://zhangzhaopds.oss-cn-beijing.aliyuncs.com/Runner.dmg)
 
 3. Connect your iPhone to the computer, and make sure **Developer Mode** is **turned on**.
 
