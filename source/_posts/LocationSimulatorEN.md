@@ -22,6 +22,8 @@ tags:
 
 #### How to get started:
 
+~~**iOS 17 is not supported** ~~
+
 1. Download and install **iNavMock** app to your macOS device. [Download iNavMock](https://apps.apple.com/app/id6459020120)
 
 2. Download and install the device connection tool **Runner** to your macOS device. iNavMock is not directly connected to the phone, so it needs to be used in conjunction with the Runner. [Download Runner](https://zhangzhaopds.oss-cn-beijing.aliyuncs.com/Runner.dmg)
@@ -31,6 +33,8 @@ tags:
 4. Open the iNavMock app, select the location you want to modify or set the start and end points of the simulated navigation on the interface.
 
 5. Start to experience virtual position modification and simulated navigation.
+   
+6. For more help, email zhangzhaopds@gmail.com.
 
 ![Preview image](https://zhangzhaopds.oss-cn-beijing.aliyuncs.com/images/iNavMock_en.png)
 

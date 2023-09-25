@@ -22,6 +22,8 @@ tags:
 
 #### 如何使用：
 
+~~**暂不支持 iOS 17 系统** ~~
+
 1. 下载并安装 **iNavMock** 应用到您的 macOS 设备。[下载iNavMock](https://apps.apple.com/app/id6459020120)
 
 2. 下载并安装设备连接工具 **Runner** 到您的macOS设备。iNavMock 并不直接与手机连接，所以需要与Runner配合使用。[下载Runner](https://zhangzhaopds.oss-cn-beijing.aliyuncs.com/Runner.dmg)
@@ -31,6 +33,8 @@ tags:
 4. 打开 iNavMock 应用，在界面上选择您想要修改的位置或者设置模拟导航的起点和终点。
 
 5. 开始体验虚拟的位置修改和模拟导航。
+
+6. 可发送邮件至zhangzhaopds@gmail.com需求更多帮助。
 
 ![预览图](https://zhangzhaopds.oss-cn-beijing.aliyuncs.com/images/iNavMock_hant.png)
 
