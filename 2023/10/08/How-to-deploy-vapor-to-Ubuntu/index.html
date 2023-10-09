@@ -20,15 +20,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"zhangzhaopds.github.io","root":"/blogs/","images":"/blogs/images","scheme":"Pisces","darkmode":false,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/blogs/js/config.js"></script>
 
-    <meta name="description" content="如何将Vapor项目部署到Ubuntu？前言Vapor官方文档https:&#x2F;&#x2F;legacy.docs.vapor.codes&#x2F;3.0&#x2F;  Swift下载地址https:&#x2F;&#x2F;www.swifwt.org&#x2F;download&#x2F;#using-downloads  环境：Ubuntu 22.04  Swift 5.9,	x86_64 https:&#x2F;&#x2F;download.swift.org&#x2F;swift-5.9-">
+    <meta name="description" content="如何将Vapor项目部署到Ubuntu？Vapor 是基于 Swift 编程语言而开发的最流行的 Web 网络框架，这是一种更先进、强大且类型安全的编程语言。通过 Vapor，你可以使用 Swift 编写后端、Web 应用 API 或 HTTP 服务，与传统的服务器语言相比具有许多优点。 前言Vapor官方文档https:&#x2F;&#x2F;legacy.docs.vapor.codes&#x2F;3.0&#x2F;  Swift下">
 <meta property="og:type" content="article">
 <meta property="og:title" content="How to deploy Vapor to Ubuntu">
 <meta property="og:url" content="https://zhangzhaopds.github.io/blogs/2023/10/08/How-to-deploy-vapor-to-Ubuntu/index.html">
 <meta property="og:site_name" content="zhangzhaopds">
-<meta property="og:description" content="如何将Vapor项目部署到Ubuntu？前言Vapor官方文档https:&#x2F;&#x2F;legacy.docs.vapor.codes&#x2F;3.0&#x2F;  Swift下载地址https:&#x2F;&#x2F;www.swifwt.org&#x2F;download&#x2F;#using-downloads  环境：Ubuntu 22.04  Swift 5.9,	x86_64 https:&#x2F;&#x2F;download.swift.org&#x2F;swift-5.9-">
+<meta property="og:description" content="如何将Vapor项目部署到Ubuntu？Vapor 是基于 Swift 编程语言而开发的最流行的 Web 网络框架，这是一种更先进、强大且类型安全的编程语言。通过 Vapor，你可以使用 Swift 编写后端、Web 应用 API 或 HTTP 服务，与传统的服务器语言相比具有许多优点。 前言Vapor官方文档https:&#x2F;&#x2F;legacy.docs.vapor.codes&#x2F;3.0&#x2F;  Swift下">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-10-08T09:56:41.000Z">
-<meta property="article:modified_time" content="2023-10-09T02:12:10.619Z">
+<meta property="article:modified_time" content="2023-10-09T02:29:47.320Z">
 <meta property="article:author" content="张子布">
 <meta name="twitter:card" content="summary">
 
@@ -112,7 +112,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%B0%86Vapor%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%88%B0Ubuntu%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">如何将Vapor项目部署到Ubuntu？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.0.1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Vapor%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3"><span class="nav-number">1.0.1.0.1.</span> <span class="nav-text">Vapor官方文档</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Swift%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80"><span class="nav-number">1.0.1.0.2.</span> <span class="nav-text">Swift下载地址</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%EF%BC%9A"><span class="nav-number">1.0.1.0.3.</span> <span class="nav-text">环境：</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%A4%87%E6%B3%A8%EF%BC%9A"><span class="nav-number">1.0.1.1.</span> <span class="nav-text">备注：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81%E5%AE%89%E8%A3%85Swift"><span class="nav-number">1.0.2.</span> <span class="nav-text">1、安装Swift</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81%E5%AE%89%E8%A3%85Vapor-Toolbox"><span class="nav-number">1.0.3.</span> <span class="nav-text">2、安装Vapor Toolbox</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3%E3%80%81%E6%96%B0%E5%BB%BAVapor%E9%A1%B9%E7%9B%AE"><span class="nav-number">1.0.4.</span> <span class="nav-text">3、新建Vapor项目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4%E3%80%81%E5%AE%89%E8%A3%85nginx"><span class="nav-number">1.0.5.</span> <span class="nav-text">4、安装nginx</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5%E3%80%81%E5%AE%89%E8%A3%85supervisor"><span class="nav-number">1.0.6.</span> <span class="nav-text">5、安装supervisor</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%B0%86Vapor%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%88%B0Ubuntu%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">如何将Vapor项目部署到Ubuntu？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.0.1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Vapor%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3"><span class="nav-number">1.0.1.0.1.</span> <span class="nav-text">Vapor官方文档</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Swift%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80"><span class="nav-number">1.0.1.0.2.</span> <span class="nav-text">Swift下载地址</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%EF%BC%9A"><span class="nav-number">1.0.1.0.3.</span> <span class="nav-text">环境：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%A4%87%E6%B3%A8%EF%BC%9A"><span class="nav-number">1.0.1.0.4.</span> <span class="nav-text">备注：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81%E5%AE%89%E8%A3%85Swift"><span class="nav-number">1.0.2.</span> <span class="nav-text">1、安装Swift</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81%E5%AE%89%E8%A3%85Vapor-Toolbox"><span class="nav-number">1.0.3.</span> <span class="nav-text">2、安装Vapor Toolbox</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3%E3%80%81%E6%96%B0%E5%BB%BAVapor%E9%A1%B9%E7%9B%AE"><span class="nav-number">1.0.4.</span> <span class="nav-text">3、新建Vapor项目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4%E3%80%81%E5%AE%89%E8%A3%85nginx"><span class="nav-number">1.0.5.</span> <span class="nav-text">4、安装nginx</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5%E3%80%81%E5%AE%89%E8%A3%85supervisor"><span class="nav-number">1.0.6.</span> <span class="nav-text">5、安装supervisor</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -208,7 +208,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-10-09 10:12:10" itemprop="dateModified" datetime="2023-10-09T10:12:10+08:00">2023-10-09</time>
+      <time title="Modified: 2023-10-09 10:29:47" itemprop="dateModified" datetime="2023-10-09T10:29:47+08:00">2023-10-09</time>
     </span>
 
   
@@ -221,7 +221,8 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h2 id="如何将Vapor项目部署到Ubuntu？"><a href="#如何将Vapor项目部署到Ubuntu？" class="headerlink" title="如何将Vapor项目部署到Ubuntu？"></a>如何将Vapor项目部署到Ubuntu？</h2><h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><h6 id="Vapor官方文档"><a href="#Vapor官方文档" class="headerlink" title="Vapor官方文档"></a>Vapor官方文档</h6><pre><code>https://legacy.docs.vapor.codes/3.0/
+        <h2 id="如何将Vapor项目部署到Ubuntu？"><a href="#如何将Vapor项目部署到Ubuntu？" class="headerlink" title="如何将Vapor项目部署到Ubuntu？"></a>如何将Vapor项目部署到Ubuntu？</h2><p><a target="_blank" rel="noopener" href="https://docs.vapor.codes/">Vapor</a> 是基于 Swift 编程语言而开发的最流行的 Web 网络框架，这是一种更先进、强大且类型安全的编程语言。通过 Vapor，你可以使用 Swift 编写后端、Web 应用 API 或 HTTP 服务，与传统的服务器语言相比具有许多优点。</p>
+<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><h6 id="Vapor官方文档"><a href="#Vapor官方文档" class="headerlink" title="Vapor官方文档"></a>Vapor官方文档</h6><pre><code>https://legacy.docs.vapor.codes/3.0/
 </code></pre>
 <h6 id="Swift下载地址"><a href="#Swift下载地址" class="headerlink" title="Swift下载地址"></a>Swift下载地址</h6><pre><code>https://www.swifwt.org/download/#using-downloads
 </code></pre>
@@ -230,7 +231,7 @@
 Swift 5.9,	x86_64
 https://download.swift.org/swift-5.9-release/ubuntu2204/swift-5.9-RELEASE/swift-5.9-RELEASE-ubuntu22.04.tar.gz
 </code></pre>
-<h5 id="备注："><a href="#备注：" class="headerlink" title="备注："></a>备注：</h5><p>文中涉及到的文件路径，可根据自己喜好修改调整</p>
+<h6 id="备注："><a href="#备注：" class="headerlink" title="备注："></a>备注：</h6><p>文中涉及到的文件路径，可根据自己喜好修改调整</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Swift安装包：/usr/src/</span><br><span class="line"></span><br><span class="line">Vapor Toolbox： /usr/local/projects/vap</span><br><span class="line"></span><br><span class="line">Hello项目：usr/local/projects/vap</span><br></pre></td></tr></table></figure>
 
 
@@ -314,8 +315,8 @@ https://download.swift.org/swift-5.9-release/ubuntu2204/swift-5.9-RELEASE/swift-
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/blogs/2023/08/11/LocationSimulator/" rel="prev" title="如何在iPhone手机上修改手机定位和模拟导航？">
-                  <i class="fa fa-chevron-left"></i> 如何在iPhone手机上修改手机定位和模拟导航？
+                <a href="/blogs/2023/08/11/LocationSimulatorEN/" rel="prev" title="How to modify the mobile phone positioning and simulated navigation on the iPhone?">
+                  <i class="fa fa-chevron-left"></i> How to modify the mobile phone positioning and simulated navigation on the iPhone?
                 </a>
             </div>
             <div class="post-nav-item">
