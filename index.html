@@ -122,7 +122,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/blogs/archives/">
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -157,6 +157,161 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://zhangzhaopds.github.io/blogs/2023/10/08/How-to-deploy-vapor-to-Ubuntu/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blogs/images/avatar.PNG">
+      <meta itemprop="name" content="张子布">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhangzhaopds">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | zhangzhaopds">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blogs/2023/10/08/How-to-deploy-vapor-to-Ubuntu/" class="post-title-link" itemprop="url">How to deploy Vapor to Ubuntu</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-10-08 17:56:41" itemprop="dateCreated datePublished" datetime="2023-10-08T17:56:41+08:00">2023-10-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-10-09 10:12:10" itemprop="dateModified" datetime="2023-10-09T10:12:10+08:00">2023-10-09</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="如何将Vapor项目部署到Ubuntu？"><a href="#如何将Vapor项目部署到Ubuntu？" class="headerlink" title="如何将Vapor项目部署到Ubuntu？"></a>如何将Vapor项目部署到Ubuntu？</h2><h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><h6 id="Vapor官方文档"><a href="#Vapor官方文档" class="headerlink" title="Vapor官方文档"></a>Vapor官方文档</h6><pre><code>https://legacy.docs.vapor.codes/3.0/
+</code></pre>
+<h6 id="Swift下载地址"><a href="#Swift下载地址" class="headerlink" title="Swift下载地址"></a>Swift下载地址</h6><pre><code>https://www.swifwt.org/download/#using-downloads
+</code></pre>
+<h6 id="环境："><a href="#环境：" class="headerlink" title="环境："></a>环境：</h6><pre><code>Ubuntu 22.04
+
+Swift 5.9,	x86_64
+https://download.swift.org/swift-5.9-release/ubuntu2204/swift-5.9-RELEASE/swift-5.9-RELEASE-ubuntu22.04.tar.gz
+</code></pre>
+<h5 id="备注："><a href="#备注：" class="headerlink" title="备注："></a>备注：</h5><p>文中涉及到的文件路径，可根据自己喜好修改调整</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Swift安装包：/usr/src/</span><br><span class="line"></span><br><span class="line">Vapor Toolbox： /usr/local/projects/vap</span><br><span class="line"></span><br><span class="line">Hello项目：usr/local/projects/vap</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="1、安装Swift"><a href="#1、安装Swift" class="headerlink" title="1、安装Swift"></a>1、安装Swift</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt update &amp;&amp; sudo apt upgrade</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt-get install \</span><br><span class="line">          binutils \</span><br><span class="line">          git \</span><br><span class="line">          gnupg2 \</span><br><span class="line">          libc6-dev \</span><br><span class="line">          libcurl4-openssl-dev \</span><br><span class="line">          libedit2 \</span><br><span class="line">          libgcc-9-dev \</span><br><span class="line">          libpython3.8 \</span><br><span class="line">          libsqlite3-0 \</span><br><span class="line">          libstdc++-9-dev \</span><br><span class="line">          libxml2-dev \</span><br><span class="line">          libz3-dev \</span><br><span class="line">          pkg-config \</span><br><span class="line">          tzdata \</span><br><span class="line">          unzip \</span><br><span class="line">          zlib1g-dev</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 导入 PGP</span><br><span class="line">wget -q -O - https://swift.org/keys/all-keys.asc | gpg --import -</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /usr/src/</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt install -y wget</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 下载Swift压缩包</span><br><span class="line">wget https://download.swift.org/swift-5.9-release/ubuntu2204/swift-5.9-RELEASE/swift-5.9-RELEASE-ubuntu22.04.tar.gz</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 解压</span><br><span class="line">tar xzf swift-5.9-RELEASE-ubuntu22.04.tar.gz</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 添加软连接</span><br><span class="line">export PATH=/usr/src/swift-5.9-RELEASE-ubuntu22.04/usr/bin:&quot;$&#123;PATH&#125;&quot;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 校验</span><br><span class="line">swift --version</span><br><span class="line"></span><br><span class="line"># 输出下面内容，表示安装成功</span><br><span class="line">Swift version 5.9 (swift-5.9-RELEASE)</span><br><span class="line">Target: x86_64-unknown-linux-gnu</span><br></pre></td></tr></table></figure>
+
+<h4 id="2、安装Vapor-Toolbox"><a href="#2、安装Vapor-Toolbox" class="headerlink" title="2、安装Vapor Toolbox"></a>2、安装Vapor Toolbox</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /usr/local/projects/vap</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/vapor/toolbox.git</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd toolbox</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git checkout 18.7.1</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">swift build -c release --disable-sandbox</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mv .build/release/vapor /usr/local/bin</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 校验</span><br><span class="line">vapor --help</span><br></pre></td></tr></table></figure>
+
+<h4 id="3、新建Vapor项目"><a href="#3、新建Vapor项目" class="headerlink" title="3、新建Vapor项目"></a>3、新建Vapor项目</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 进入文件夹</span><br><span class="line">cd /usr/local/projects/vap</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 新建项目</span><br><span class="line">vapor new Hello	</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 构建</span><br><span class="line">cd Hello</span><br><span class="line">swift build</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 运行</span><br><span class="line">swift run</span><br><span class="line"></span><br><span class="line"># 或者</span><br><span class="line">swift run App serve --env production</span><br><span class="line">swift run App serve --env development</span><br><span class="line">swift run App serve --env testing</span><br></pre></td></tr></table></figure>
+
+<h4 id="4、安装nginx"><a href="#4、安装nginx" class="headerlink" title="4、安装nginx"></a>4、安装nginx</h4><p>使用反向代理，将Vapor 服务器绑定到 80 端口</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 安装</span><br><span class="line">apt-get update</span><br><span class="line">apt-get install nginx</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 修改站点配置</span><br><span class="line">vim /etc/nginx/sites-enabled/default</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 具体修改如下：</span><br><span class="line">server &#123;</span><br><span class="line">    listen 80 default_server;</span><br><span class="line">    listen [::]:80 default_server;</span><br><span class="line"></span><br><span class="line">    root /usr/local/projects/vap/Hello/Public/;</span><br><span class="line"></span><br><span class="line">    # nginx 直接处理所有静态资源文件的请求，其余请求则回落 (fallback) 到 Vapor 应用</span><br><span class="line">    location / &#123;</span><br><span class="line">        try_files $uri @proxy;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location @proxy &#123;</span><br><span class="line">        proxy_pass http://127.0.0.1:8080;</span><br><span class="line">        proxy_pass_header Server;</span><br><span class="line">        proxy_set_header Host $host;</span><br><span class="line">        proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">        proxy_connect_timeout 3s;</span><br><span class="line">        proxy_read_timeout 10s;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 运行</span><br><span class="line">service nginx start</span><br></pre></td></tr></table></figure>
+
+<p>在Hello项目运行的前提下，访问 http:&#x2F;&#x2F;你的IP地址, 一切正常的话，将输出 It works!</p>
+<h4 id="5、安装supervisor"><a href="#5、安装supervisor" class="headerlink" title="5、安装supervisor"></a>5、安装supervisor</h4><p>使项目保持后台运行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 安装</span><br><span class="line">sudo apt-get install supervisor</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 进入配置目录</span><br><span class="line">cd /etc/supervisor/conf.d/</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 为项目添加配置</span><br><span class="line">touch Hello.conf</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 编辑配置</span><br><span class="line">vim Hello.conf</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 具体编辑内容如下：</span><br><span class="line">[program:hello]</span><br><span class="line">	command=/usr/src/swift-5.9-RELEASE-ubuntu22.04/usr/bin/swift run App serve --env production</span><br><span class="line"> directory=/usr/local/projects/vap/Hello/</span><br><span class="line"> autorestart=true</span><br><span class="line"> user=root</span><br><span class="line"> stdout_logfile=/var/log/supervisor/%(program_name)-stdout.log</span><br><span class="line"> stderr_logfile=/var/log/supervisor/%(program_name)-stderr.log</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 重启</span><br><span class="line">systemctl restart supervisor</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 重新加载配置</span><br><span class="line">sudo supervisorctl reread</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 添加需要运行的配置</span><br><span class="line">sudo supervisorctl add hello</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 启动配置</span><br><span class="line">sudo supervisorctl start hello</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># vap项目更新后，需重启</span><br><span class="line">sudo supervisorctl restart all</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Supervisor状态</span><br><span class="line">systemctl status supervisor</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 查看运行中的服务， 输入exit退出</span><br><span class="line">supervisorctl</span><br></pre></td></tr></table></figure>
+
+<p>👉👉👉👉  End 👈👈👈👈</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -241,7 +396,7 @@
 </li>
 <li><p>开始体验虚拟的位置修改和模拟导航。</p>
 </li>
-<li><p>可发送邮件至<a href="mailto:&#122;&#104;&#97;&#110;&#103;&#122;&#x68;&#97;&#x6f;&#x70;&#100;&#115;&#x40;&#x67;&#109;&#x61;&#105;&#108;&#x2e;&#x63;&#x6f;&#109;">&#122;&#104;&#97;&#110;&#103;&#122;&#x68;&#97;&#x6f;&#x70;&#100;&#115;&#x40;&#x67;&#109;&#x61;&#105;&#108;&#x2e;&#x63;&#x6f;&#109;</a>需求更多帮助。</p>
+<li><p>可发送邮件至<a href="mailto:&#122;&#x68;&#x61;&#x6e;&#x67;&#122;&#x68;&#97;&#111;&#x70;&#x64;&#x73;&#x40;&#x67;&#x6d;&#97;&#105;&#108;&#46;&#99;&#111;&#x6d;">&#122;&#x68;&#x61;&#x6e;&#x67;&#122;&#x68;&#97;&#111;&#x70;&#x64;&#x73;&#x40;&#x67;&#x6d;&#97;&#105;&#108;&#46;&#99;&#111;&#x6d;</a>需求更多帮助。</p>
 </li>
 </ol>
 <p><img src="https://zhangzhaopds.oss-cn-beijing.aliyuncs.com/images/iNavMock_hant.png" alt="预览图"></p>
@@ -369,7 +524,7 @@
 </li>
 <li><p>Start to experience virtual position modification and simulated navigation.</p>
 </li>
-<li><p>For more help, email <a href="mailto:&#x7a;&#x68;&#97;&#x6e;&#103;&#122;&#x68;&#97;&#111;&#x70;&#100;&#115;&#x40;&#x67;&#x6d;&#x61;&#105;&#x6c;&#46;&#99;&#x6f;&#x6d;">&#x7a;&#x68;&#97;&#x6e;&#103;&#122;&#x68;&#97;&#111;&#x70;&#100;&#115;&#x40;&#x67;&#x6d;&#x61;&#105;&#x6c;&#46;&#99;&#x6f;&#x6d;</a>.</p>
+<li><p>For more help, email <a href="mailto:&#x7a;&#104;&#97;&#x6e;&#103;&#x7a;&#104;&#x61;&#111;&#x70;&#100;&#115;&#x40;&#x67;&#x6d;&#x61;&#x69;&#108;&#46;&#99;&#x6f;&#x6d;">&#x7a;&#104;&#97;&#x6e;&#103;&#x7a;&#104;&#x61;&#111;&#x70;&#100;&#115;&#x40;&#x67;&#x6d;&#x61;&#x69;&#108;&#46;&#99;&#x6f;&#x6d;</a>.</p>
 </li>
 </ol>
 <p><img src="https://zhangzhaopds.oss-cn-beijing.aliyuncs.com/images/iNavMock_en.png" alt="Preview image"></p>
@@ -873,7 +1028,7 @@
 <h4 id="7、本条款的变更"><a href="#7、本条款的变更" class="headerlink" title="7、本条款的变更"></a>7、本条款的变更</h4><p>我们可不时对服务条款作出变更并通过适当方式向您提示变更内容。您理解并同意，如果您在服务条款作出变更后继续使用服务，则视为接受该变更。</p>
 <h4 id="8、一般法律条款"><a href="#8、一般法律条款" class="headerlink" title="8、一般法律条款"></a>8、一般法律条款</h4><p>用户使用本产品和服务时，承诺准守当地法律法规，社会制度，国家利益，公民合法权益，公共秩序，社会道德风尚。不得利用本产品和服务违反法律和法规。<br>如出现纠纷，双方协商一致解决；如果双方无法通过协商解决，则双方同意由中国成都仲裁机构，在成都进行仲裁解决。</p>
 <p>上述条款是各方针对本文主题的全部协议，优先于并取代所有以前或同期对此类主题的书面或口头的规定或协议。<br>本协议中的标题仅为方便而设，在解释本协议时应被忽略。</p>
-<p>如您对本协议内容有任何疑问，可发邮件至邮箱（<a href="mailto:&#122;&#104;&#97;&#110;&#103;&#x7a;&#x68;&#97;&#111;&#112;&#x64;&#x73;&#64;&#x69;&#99;&#108;&#111;&#117;&#x64;&#x2e;&#x63;&#x6f;&#x6d;">&#122;&#104;&#97;&#110;&#103;&#x7a;&#x68;&#97;&#111;&#112;&#x64;&#x73;&#64;&#x69;&#99;&#108;&#111;&#117;&#x64;&#x2e;&#x63;&#x6f;&#x6d;</a>）。</p>
+<p>如您对本协议内容有任何疑问，可发邮件至邮箱（<a href="mailto:&#122;&#x68;&#97;&#x6e;&#x67;&#x7a;&#104;&#97;&#111;&#x70;&#100;&#115;&#64;&#105;&#99;&#108;&#111;&#x75;&#100;&#x2e;&#99;&#x6f;&#109;">&#122;&#x68;&#97;&#x6e;&#x67;&#x7a;&#104;&#97;&#111;&#x70;&#100;&#115;&#64;&#105;&#99;&#108;&#111;&#x75;&#100;&#x2e;&#99;&#x6f;&#109;</a>）。</p>
 
       
     </div>
@@ -947,7 +1102,7 @@
 <h4 id="会收集的信息"><a href="#会收集的信息" class="headerlink" title="会收集的信息"></a>会收集的信息</h4><p>1、收集实现产品功能所必须的信息。例如手机型号、操作系统信息、位置信息、相册权限。<br>2、会收集信息只为提供更加个性化的服务和体验。例如你注册账号时的手机号码、邮箱、密码。<br>3、收集改善用户体验的信息。例如用户操作习惯。</p>
 <h4 id="信息的使用"><a href="#信息的使用" class="headerlink" title="信息的使用"></a>信息的使用</h4><p>1、实现产品功能。例如，操作系统信息是为了更好的适配您的手机。<br>2、体验的优化。例如，用户操作习惯，更好的设计应用布局和功能，优化使用体验。</p>
 <h4 id="您的选择"><a href="#您的选择" class="headerlink" title="您的选择"></a>您的选择</h4><p>1、用户操作习惯的信息搜集，您选择我们的软件，默认您允许我们搜集此信息，此信息不针对个人，不定位到个人。如果您不允许可停止软件的使用。<br>2、相册权限，位置信息，开始收集前会有提示，如果您不允许搜集，可能会影响一些功能的使用，你可以在应用或者手机设置中关闭。</p>
-<h4 id="我们的责任和保证"><a href="#我们的责任和保证" class="headerlink" title="我们的责任和保证"></a>我们的责任和保证</h4><p>我们有必要遵守相关法律义务，遵循相关法规要求，解决纠纷，防止欺诈和滥用。<br>我们保证不主动向第三方透漏用户的隐私信息，我们不针对单个个人的隐私信息进行分析，我们将尽力保护用户的隐私信息安全。<br>如果出现管理变更或软件出售，我们可以在保证安全的情况下向第三方共享您的信息，该第三方有权在符合《隐私权政策》条款的情况下使用该信息。<br>我们有可能适时修订此政策内容，如果有修订后继续使用我们的服务，即表示同意修订的隐私政策。<br>如果您对本政策有疑问你可以通过<a href="mailto:&#x7a;&#x68;&#97;&#x6e;&#103;&#122;&#x68;&#97;&#111;&#112;&#x64;&#115;&#64;&#x69;&#x63;&#108;&#111;&#117;&#x64;&#x2e;&#99;&#x6f;&#109;">&#x7a;&#x68;&#97;&#x6e;&#103;&#122;&#x68;&#97;&#111;&#112;&#x64;&#115;&#64;&#x69;&#x63;&#108;&#111;&#117;&#x64;&#x2e;&#99;&#x6f;&#109;</a>联系我们，我们将尽快审核涉及的问题，并予以回复。</p>
+<h4 id="我们的责任和保证"><a href="#我们的责任和保证" class="headerlink" title="我们的责任和保证"></a>我们的责任和保证</h4><p>我们有必要遵守相关法律义务，遵循相关法规要求，解决纠纷，防止欺诈和滥用。<br>我们保证不主动向第三方透漏用户的隐私信息，我们不针对单个个人的隐私信息进行分析，我们将尽力保护用户的隐私信息安全。<br>如果出现管理变更或软件出售，我们可以在保证安全的情况下向第三方共享您的信息，该第三方有权在符合《隐私权政策》条款的情况下使用该信息。<br>我们有可能适时修订此政策内容，如果有修订后继续使用我们的服务，即表示同意修订的隐私政策。<br>如果您对本政策有疑问你可以通过<a href="mailto:&#122;&#x68;&#x61;&#110;&#x67;&#x7a;&#104;&#97;&#111;&#x70;&#100;&#x73;&#64;&#x69;&#99;&#108;&#111;&#x75;&#x64;&#46;&#99;&#x6f;&#109;">&#122;&#x68;&#x61;&#110;&#x67;&#x7a;&#104;&#97;&#111;&#x70;&#100;&#x73;&#64;&#x69;&#99;&#108;&#111;&#x75;&#x64;&#46;&#99;&#x6f;&#109;</a>联系我们，我们将尽快审核涉及的问题，并予以回复。</p>
 
       
     </div>
