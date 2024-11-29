@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blogs/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blogs/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blogs/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blogs/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blogs/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha256-xejo6yLi6vGtAjcMIsY8BHdKsLg7QynVlFMzdQgUuy8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zhangzhaopds.github.io","root":"/blogs/","images":"/blogs/images","scheme":"Pisces","darkmode":false,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/blogs/js/config.js"></script>
+
+    <meta name="description" content="决策树我想要创建一个 Observable 产生特定的一个元素：just 经过一段延时：timer   从一个序列拉取元素：from 重复的产生某一个元素：repeatElement 存在自定义逻辑：create 每次订阅时产生：deferred 每隔一段时间，发出一个元素：interval 在一段延时后：timer   一个空序列，只有一个完成事件：empty 一个任何事件都没有产生的序列：ne">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RxSwift操作符">
+<meta property="og:url" content="https://zhangzhaopds.github.io/blogs/2023/02/17/RxSwiftOperators/index.html">
+<meta property="og:site_name" content="zhangzhaopds">
+<meta property="og:description" content="决策树我想要创建一个 Observable 产生特定的一个元素：just 经过一段延时：timer   从一个序列拉取元素：from 重复的产生某一个元素：repeatElement 存在自定义逻辑：create 每次订阅时产生：deferred 每隔一段时间，发出一个元素：interval 在一段延时后：timer   一个空序列，只有一个完成事件：empty 一个任何事件都没有产生的序列：ne">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-02-17T08:16:30.000Z">
+<meta property="article:modified_time" content="2024-11-29T01:04:52.980Z">
+<meta property="article:author" content="张子布">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://zhangzhaopds.github.io/blogs/2023/02/17/RxSwiftOperators/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://zhangzhaopds.github.io/blogs/2023/02/17/RxSwiftOperators/","path":"2023/02/17/RxSwiftOperators/","title":"RxSwift操作符"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>RxSwift操作符 | zhangzhaopds</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LM84GT3DCR"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-LM84GT3DCR","only_pageview":false}</script>
+  <script src="/blogs/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/blogs/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blogs/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">zhangzhaopds</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%86%B3%E7%AD%96%E6%A0%91"><span class="nav-number">1.</span> <span class="nav-text">决策树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%91%E6%83%B3%E8%A6%81%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA-Observable"><span class="nav-number">1.0.1.</span> <span class="nav-text">我想要创建一个 Observable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%91%E6%83%B3%E8%A6%81%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA-Observable-%E9%80%9A%E8%BF%87%E7%BB%84%E5%90%88%E5%85%B6%E4%BB%96%E7%9A%84-Observables"><span class="nav-number">1.0.2.</span> <span class="nav-text">我想要创建一个 Observable 通过组合其他的 Observables</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%91%E6%83%B3%E8%A6%81%E8%BD%AC%E6%8D%A2-Observable-%E7%9A%84%E5%85%83%E7%B4%A0%E5%90%8E%EF%BC%8C%E5%86%8D%E5%B0%86%E5%AE%83%E4%BB%AC%E5%8F%91%E5%87%BA%E6%9D%A5"><span class="nav-number">1.0.3.</span> <span class="nav-text">我想要转换 Observable 的元素后，再将它们发出来</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%91%E6%83%B3%E8%A6%81%E5%B0%86%E4%BA%A7%E7%94%9F%E7%9A%84%E6%AF%8F%E4%B8%80%E4%B8%AA%E5%85%83%E7%B4%A0%EF%BC%8C%E6%8B%96%E5%BB%B6%E4%B8%80%E6%AE%B5%E6%97%B6%E9%97%B4%E5%90%8E%E5%86%8D%E5%8F%91%E5%87%BA%EF%BC%9Adelay"><span class="nav-number">1.0.4.</span> <span class="nav-text">我想要将产生的每一个元素，拖延一段时间后再发出：delay</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%91%E6%83%B3%E8%A6%81%E5%B0%86%E4%BA%A7%E7%94%9F%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%B0%81%E8%A3%85%E6%88%90%E5%85%83%E7%B4%A0%E5%8F%91%E9%80%81%E5%87%BA%E6%9D%A5"><span class="nav-number">1.0.5.</span> <span class="nav-text">我想要将产生的事件封装成元素发送出来</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%91%E6%83%B3%E8%A6%81%E5%BF%BD%E7%95%A5%E6%8E%89%E6%89%80%E6%9C%89%E7%9A%84-next-%E4%BA%8B%E4%BB%B6%EF%BC%8C%E5%8F%AA%E6%8E%A5%E6%94%B6-completed-%E5%92%8C-error-%E4%BA%8B%E4%BB%B6%EF%BC%9AignoreElements"><span class="nav-number">1.0.6.</span> <span class="nav-text">我想要忽略掉所有的 next 事件，只接收 completed 和 error 事件：ignoreElements</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%91%E6%83%B3%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%96%B0%E7%9A%84-Observable-%E5%9C%A8%E5%8E%9F%E6%9C%89%E7%9A%84%E5%BA%8F%E5%88%97%E5%89%8D%E9%9D%A2%E5%8A%A0%E5%85%A5%E4%B8%80%E4%BA%9B%E5%85%83%E7%B4%A0%EF%BC%9AstartWith"><span class="nav-number">1.0.7.</span> <span class="nav-text">我想创建一个新的 Observable 在原有的序列前面加入一些元素：startWith</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%91%E6%83%B3%E4%BB%8E-Observable-%E4%B8%AD%E6%94%B6%E9%9B%86%E5%85%83%E7%B4%A0%EF%BC%8C%E7%BC%93%E5%AD%98%E8%BF%99%E4%BA%9B%E5%85%83%E7%B4%A0%E4%B9%8B%E5%90%8E%E5%9C%A8%E5%8F%91%E5%87%BA%EF%BC%9Abuffer"><span class="nav-number">1.0.8.</span> <span class="nav-text">我想从 Observable 中收集元素，缓存这些元素之后在发出：buffer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%91%E6%83%B3%E5%B0%86-Observable-%E6%8B%86%E5%88%86%E6%88%90%E5%A4%9A%E4%B8%AA-Observables%EF%BC%9Awindow"><span class="nav-number">1.0.9.</span> <span class="nav-text">我想将 Observable 拆分成多个 Observables：window</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%91%E6%83%B3%E5%8F%AA%E6%8E%A5%E6%94%B6-Observable-%E4%B8%AD%E7%89%B9%E5%AE%9A%E7%9A%84%E5%85%83%E7%B4%A0"><span class="nav-number">1.0.10.</span> <span class="nav-text">我想只接收 Observable 中特定的元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%91%E6%83%B3%E9%87%8D%E6%96%B0%E4%BB%8E-Observable-%E4%B8%AD%E5%8F%91%E5%87%BA%E6%9F%90%E4%BA%9B%E5%85%83%E7%B4%A0"><span class="nav-number">1.0.11.</span> <span class="nav-text">我想重新从 Observable 中发出某些元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%91%E6%83%B3%E8%A6%81%E4%BB%8E%E4%B8%80%E4%BA%9B-Observables-%E4%B8%AD%EF%BC%8C%E5%8F%AA%E5%8F%96%E7%AC%AC%E4%B8%80%E4%B8%AA%E4%BA%A7%E7%94%9F%E5%85%83%E7%B4%A0%E7%9A%84-Observable%EF%BC%9Aamb"><span class="nav-number">1.0.12.</span> <span class="nav-text">我想要从一些 Observables 中，只取第一个产生元素的 Observable：amb</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%91%E6%83%B3%E8%AF%84%E4%BC%B0-Observable-%E7%9A%84%E5%85%A8%E9%83%A8%E5%85%83%E7%B4%A0"><span class="nav-number">1.0.13.</span> <span class="nav-text">我想评估 Observable 的全部元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%91%E6%83%B3%E6%8A%8A-Observable-%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%85%B6%E4%BB%96%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%9Aas%E2%80%A6"><span class="nav-number">1.0.14.</span> <span class="nav-text">我想把 Observable 转换为其他的数据结构：as…</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%91%E6%83%B3%E5%9C%A8%E6%9F%90%E4%B8%AA-Scheduler-%E5%BA%94%E7%94%A8%E6%93%8D%E4%BD%9C%E7%AC%A6%EF%BC%9AsubscribeOn"><span class="nav-number">1.0.15.</span> <span class="nav-text">我想在某个 Scheduler 应用操作符：subscribeOn</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%91%E6%83%B3%E8%A6%81-Observable-%E5%8F%91%E7%94%9F%E6%9F%90%E4%B8%AA%E4%BA%8B%E4%BB%B6%E6%97%B6-%E9%87%87%E5%8F%96%E6%9F%90%E4%B8%AA%E8%A1%8C%E5%8A%A8%EF%BC%9Ado"><span class="nav-number">1.0.16.</span> <span class="nav-text">我想要 Observable 发生某个事件时, 采取某个行动：do</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%91%E6%83%B3%E8%A6%81-Observable-%E5%8F%91%E5%87%BA%E4%B8%80%E4%B8%AA-error-%E4%BA%8B%E4%BB%B6%EF%BC%9Aerror"><span class="nav-number">1.0.17.</span> <span class="nav-text">我想要 Observable 发出一个 error 事件：error</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%91%E6%83%B3%E8%A6%81-Observable-%E5%8F%91%E7%94%9F%E9%94%99%E8%AF%AF%E6%97%B6%EF%BC%8C%E4%BC%98%E9%9B%85%E7%9A%84%E6%81%A2%E5%A4%8D"><span class="nav-number">1.0.18.</span> <span class="nav-text">我想要 Observable 发生错误时，优雅的恢复</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%91%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA-Disposable-%E8%B5%84%E6%BA%90%EF%BC%8C%E4%BD%BF%E5%AE%83%E4%B8%8E-Observable-%E5%85%B7%E6%9C%89%E7%9B%B8%E5%90%8C%E7%9A%84%E5%AF%BF%E5%91%BD%EF%BC%9Ausing"><span class="nav-number">1.0.19.</span> <span class="nav-text">我创建一个 Disposable 资源，使它与 Observable 具有相同的寿命：using</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%91%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA-Observable%EF%BC%8C%E7%9B%B4%E5%88%B0%E6%88%91%E9%80%9A%E7%9F%A5%E5%AE%83%E5%8F%AF%E4%BB%A5%E4%BA%A7%E7%94%9F%E5%85%83%E7%B4%A0%E5%90%8E%EF%BC%8C%E6%89%8D%E8%83%BD%E4%BA%A7%E7%94%9F%E5%85%83%E7%B4%A0%EF%BC%9Apublish"><span class="nav-number">1.0.20.</span> <span class="nav-text">我创建一个 Observable，直到我通知它可以产生元素后，才能产生元素：publish</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="张子布"
+      src="/blogs/images/avatar.PNG">
+  <p class="site-author-name" itemprop="name">张子布</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/blogs/archives/">
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="mailto:zhangzhaopds@icloud.com" title="E-Mail → mailto:zhangzhaopds@icloud.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://zhangzhaopds.github.io/blogs/2023/02/17/RxSwiftOperators/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blogs/images/avatar.PNG">
+      <meta itemprop="name" content="张子布">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhangzhaopds">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="RxSwift操作符 | zhangzhaopds">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          RxSwift操作符
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-02-17 16:16:30" itemprop="dateCreated datePublished" datetime="2023-02-17T16:16:30+08:00">2023-02-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-11-29 09:04:52" itemprop="dateModified" datetime="2024-11-29T09:04:52+08:00">2024-11-29</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a><a target="_blank" rel="noopener" href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree.html">决策树</a></h1><h3 id="我想要创建一个-Observable"><a href="#我想要创建一个-Observable" class="headerlink" title="我想要创建一个 Observable"></a>我想要创建一个 Observable</h3><ul>
+<li>产生特定的一个元素：<a href="">just</a><ul>
+<li>经过一段延时：<a href="">timer</a></li>
+</ul>
+</li>
+<li>从一个序列拉取元素：<a href="">from</a></li>
+<li>重复的产生某一个元素：<a href="">repeatElement</a></li>
+<li>存在自定义逻辑：<a href="">create</a></li>
+<li>每次订阅时产生：<a href="">deferred</a></li>
+<li>每隔一段时间，发出一个元素：<a href="">interval</a><ul>
+<li>在一段延时后：<a href="">timer</a></li>
+</ul>
+</li>
+<li>一个空序列，只有一个完成事件：<a href="">empty</a></li>
+<li>一个任何事件都没有产生的序列：<a href="">never</a></li>
+</ul>
+<h3 id="我想要创建一个-Observable-通过组合其他的-Observables"><a href="#我想要创建一个-Observable-通过组合其他的-Observables" class="headerlink" title="我想要创建一个 Observable 通过组合其他的 Observables"></a>我想要创建一个 Observable 通过组合其他的 Observables</h3><ul>
+<li>任意一个 Observable 产生了元素，就发出这个元素：<a href="">merge</a></li>
+<li>让这些 Observables 一个接一个的发出元素，当上一个 Observable 元素发送完毕后，下一个 Observable 才能开始发出元素：<a href="">concat</a></li>
+<li>组合多个 Observables 的元素<ul>
+<li>当每一个 Observable 都发出一个新的元素：<a href="">zip</a></li>
+<li>当任意一个 Observable 发出一个新的元素：<a href="">combineLatest</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="我想要转换-Observable-的元素后，再将它们发出来"><a href="#我想要转换-Observable-的元素后，再将它们发出来" class="headerlink" title="我想要转换 Observable 的元素后，再将它们发出来"></a>我想要转换 Observable 的元素后，再将它们发出来</h3><ul>
+<li>对每个元素直接转换：<a href="">map</a></li>
+<li>转换到另一个 Observable：<a href="">flatMap</a><ul>
+<li>只接收最新的元素转换的 Observable 所产生的元素：<a href="">flatMapLatest</a></li>
+<li>每一个元素转换的 Observable 按顺序产生元素：<a href="">concatMap</a></li>
+</ul>
+</li>
+<li>基于所有遍历过的元素： <a href="">scan</a></li>
+</ul>
+<h3 id="我想要将产生的每一个元素，拖延一段时间后再发出：delay"><a href="#我想要将产生的每一个元素，拖延一段时间后再发出：delay" class="headerlink" title="我想要将产生的每一个元素，拖延一段时间后再发出：delay"></a>我想要将产生的每一个元素，拖延一段时间后再发出：<a href="">delay</a></h3><h3 id="我想要将产生的事件封装成元素发送出来"><a href="#我想要将产生的事件封装成元素发送出来" class="headerlink" title="我想要将产生的事件封装成元素发送出来"></a>我想要将产生的事件封装成元素发送出来</h3><ul>
+<li>将他们封装成 Event<Element>：<a href="">materialize</a><ul>
+<li>然后解封出来：<a href="">dematerialize</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="我想要忽略掉所有的-next-事件，只接收-completed-和-error-事件：ignoreElements"><a href="#我想要忽略掉所有的-next-事件，只接收-completed-和-error-事件：ignoreElements" class="headerlink" title="我想要忽略掉所有的 next 事件，只接收 completed 和 error 事件：ignoreElements"></a>我想要忽略掉所有的 next 事件，只接收 completed 和 error 事件：<a href="">ignoreElements</a></h3><h3 id="我想创建一个新的-Observable-在原有的序列前面加入一些元素：startWith"><a href="#我想创建一个新的-Observable-在原有的序列前面加入一些元素：startWith" class="headerlink" title="我想创建一个新的 Observable 在原有的序列前面加入一些元素：startWith"></a>我想创建一个新的 Observable 在原有的序列前面加入一些元素：<a href="">startWith</a></h3><h3 id="我想从-Observable-中收集元素，缓存这些元素之后在发出：buffer"><a href="#我想从-Observable-中收集元素，缓存这些元素之后在发出：buffer" class="headerlink" title="我想从 Observable 中收集元素，缓存这些元素之后在发出：buffer"></a>我想从 Observable 中收集元素，缓存这些元素之后在发出：<a href="">buffer</a></h3><h3 id="我想将-Observable-拆分成多个-Observables：window"><a href="#我想将-Observable-拆分成多个-Observables：window" class="headerlink" title="我想将 Observable 拆分成多个 Observables：window"></a>我想将 Observable 拆分成多个 Observables：<a href="">window</a></h3><ul>
+<li>基于元素的共同特征：<a href="">groupBy</a></li>
+</ul>
+<h3 id="我想只接收-Observable-中特定的元素"><a href="#我想只接收-Observable-中特定的元素" class="headerlink" title="我想只接收 Observable 中特定的元素"></a>我想只接收 Observable 中特定的元素</h3><ul>
+<li>发出唯一的元素：<a href="">single</a></li>
+</ul>
+<h3 id="我想重新从-Observable-中发出某些元素"><a href="#我想重新从-Observable-中发出某些元素" class="headerlink" title="我想重新从 Observable 中发出某些元素"></a>我想重新从 Observable 中发出某些元素</h3><ul>
+<li>通过判定条件过滤出一些元素：<a href="">filter</a></li>
+<li>仅仅发出头几个元素：<a href="">take</a></li>
+<li>仅仅发出尾部的几个元素：<a href="">takeLast</a></li>
+<li>仅仅发出第 n 个元素：<a href="">elementAt</a></li>
+<li>跳过头几个元素<ul>
+<li>跳过头 n 个元素：<a href="">skip</a></li>
+<li>跳过头几个满足判定的元素：<a href="">skipWhile</a>，<a href="">skipWhileWithIndex</a></li>
+<li>跳过某段时间内产生的头几个元素：<a href="">skip</a></li>
+<li>跳过头几个元素直到另一个 Observable 发出一个元素：<a href="">skipUntil</a></li>
+</ul>
+</li>
+<li>只取头几个元素<ul>
+<li>只取头几个满足判定的元素：<a href="">takeWhile</a>，<a href="">takeWhileWithIndex</a></li>
+<li>只取某段时间内产生的头几个元素：<a href="">take</a></li>
+<li>只取头几个元素直到另一个 Observable 发出一个元素：<a href="">takeUntil</a></li>
+</ul>
+</li>
+<li>周期性的对 Observable 抽样：<a href="">sample</a></li>
+<li>发出那些元素，这些元素产生后的特定的时间内，没有新的元素产生：<a href="">debounce</a></li>
+<li>直到元素的值发生变化，才发出新的元素：<a href="">distinctUntilChanged</a><ul>
+<li>并提供元素是否相等的判定函数：<a href="">distinctUntilChanged</a></li>
+</ul>
+</li>
+<li>在开始发出元素时，延时后进行订阅：<a href="">delaySubscription</a></li>
+</ul>
+<h3 id="我想要从一些-Observables-中，只取第一个产生元素的-Observable：amb"><a href="#我想要从一些-Observables-中，只取第一个产生元素的-Observable：amb" class="headerlink" title="我想要从一些 Observables 中，只取第一个产生元素的 Observable：amb"></a>我想要从一些 Observables 中，只取第一个产生元素的 Observable：<a href="">amb</a></h3><h3 id="我想评估-Observable-的全部元素"><a href="#我想评估-Observable-的全部元素" class="headerlink" title="我想评估 Observable 的全部元素"></a>我想评估 Observable 的全部元素</h3><ul>
+<li>并且对每个元素应用聚合方法，待所有元素都应用聚合方法后，发出结果：<a href="">reduce</a></li>
+<li>并且对每个元素应用聚合方法，每次应用聚合方法后，发出结果：<a href="">scan</a></li>
+</ul>
+<h3 id="我想把-Observable-转换为其他的数据结构：as…"><a href="#我想把-Observable-转换为其他的数据结构：as…" class="headerlink" title="我想把 Observable 转换为其他的数据结构：as…"></a>我想把 Observable 转换为其他的数据结构：<a href="">as…</a></h3><h3 id="我想在某个-Scheduler-应用操作符：subscribeOn"><a href="#我想在某个-Scheduler-应用操作符：subscribeOn" class="headerlink" title="我想在某个 Scheduler 应用操作符：subscribeOn"></a>我想在某个 Scheduler 应用操作符：<a href="">subscribeOn</a></h3><ul>
+<li>在某个 Scheduler 监听：<a href="">observeOn</a></li>
+</ul>
+<h3 id="我想要-Observable-发生某个事件时-采取某个行动：do"><a href="#我想要-Observable-发生某个事件时-采取某个行动：do" class="headerlink" title="我想要 Observable 发生某个事件时, 采取某个行动：do"></a>我想要 Observable 发生某个事件时, 采取某个行动：<a href="">do</a></h3><h3 id="我想要-Observable-发出一个-error-事件：error"><a href="#我想要-Observable-发出一个-error-事件：error" class="headerlink" title="我想要 Observable 发出一个 error 事件：error"></a>我想要 Observable 发出一个 error 事件：<a href="">error</a></h3><ul>
+<li>如果规定时间内没有产生元素：<a href="">timeout</a></li>
+</ul>
+<h3 id="我想要-Observable-发生错误时，优雅的恢复"><a href="#我想要-Observable-发生错误时，优雅的恢复" class="headerlink" title="我想要 Observable 发生错误时，优雅的恢复"></a>我想要 Observable 发生错误时，优雅的恢复</h3><ul>
+<li>如果规定时间内没有产生元素，就切换到备选 Observable ：<a href="">timeout</a></li>
+<li>如果产生错误，将错误替换成某个元素 ：<a href="">catchErrorJustReturn</a></li>
+<li>如果产生错误，就切换到备选 Observable ：<a href="">catchError</a></li>
+<li>如果产生错误，就重试 ：<a href="">retry</a></li>
+</ul>
+<h3 id="我创建一个-Disposable-资源，使它与-Observable-具有相同的寿命：using"><a href="#我创建一个-Disposable-资源，使它与-Observable-具有相同的寿命：using" class="headerlink" title="我创建一个 Disposable 资源，使它与 Observable 具有相同的寿命：using"></a>我创建一个 Disposable 资源，使它与 Observable 具有相同的寿命：<a href="">using</a></h3><h3 id="我创建一个-Observable，直到我通知它可以产生元素后，才能产生元素：publish"><a href="#我创建一个-Observable，直到我通知它可以产生元素后，才能产生元素：publish" class="headerlink" title="我创建一个 Observable，直到我通知它可以产生元素后，才能产生元素：publish"></a>我创建一个 Observable，直到我通知它可以产生元素后，才能产生元素：<a href="">publish</a></h3><ul>
+<li>并且，就算是在产生元素后订阅，也要发出全部元素：<a href="">replay</a></li>
+<li>并且，一旦所有观察者取消观察，他就被释放掉：<a href="">refCount</a></li>
+<li>通知它可以产生元素了：<a href="">connect</a></li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree.html">https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree.html</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/blogs/2022/09/21/Git-Commands/" rel="prev" title="Git Commands">
+                  <i class="fa fa-chevron-left"></i> Git Commands
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/blogs/2023/08/11/LocationSimulatorEN/" rel="next" title="How to modify the mobile phone positioning and simulated navigation on the iPhone?">
+                  How to modify the mobile phone positioning and simulated navigation on the iPhone? <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">张子布</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/blogs/js/comments.js"></script><script src="/blogs/js/utils.js"></script><script src="/blogs/js/motion.js"></script><script src="/blogs/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

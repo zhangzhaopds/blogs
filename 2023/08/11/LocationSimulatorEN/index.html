@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blogs/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blogs/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blogs/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blogs/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blogs/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha256-xejo6yLi6vGtAjcMIsY8BHdKsLg7QynVlFMzdQgUuy8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zhangzhaopds.github.io","root":"/blogs/","images":"/blogs/images","scheme":"Pisces","darkmode":false,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/blogs/js/config.js"></script>
+
+    <meta name="description" content="中文 iNavMock is a powerful macOS app designed for iPhone users to modify the positioning of the phone and provide a realistic simulated navigation experience. Whether it’s for privacy protection, testi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to modify the mobile phone positioning and simulated navigation on the iPhone?">
+<meta property="og:url" content="https://zhangzhaopds.github.io/blogs/2023/08/11/LocationSimulatorEN/index.html">
+<meta property="og:site_name" content="zhangzhaopds">
+<meta property="og:description" content="中文 iNavMock is a powerful macOS app designed for iPhone users to modify the positioning of the phone and provide a realistic simulated navigation experience. Whether it’s for privacy protection, testi">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zhangzhaopds.oss-cn-beijing.aliyuncs.com/images/iNavMock_en.png">
+<meta property="article:published_time" content="2023-08-11T15:34:28.000Z">
+<meta property="article:modified_time" content="2024-11-29T01:04:52.980Z">
+<meta property="article:author" content="张子布">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhangzhaopds.oss-cn-beijing.aliyuncs.com/images/iNavMock_en.png">
+
+
+<link rel="canonical" href="https://zhangzhaopds.github.io/blogs/2023/08/11/LocationSimulatorEN/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://zhangzhaopds.github.io/blogs/2023/08/11/LocationSimulatorEN/","path":"2023/08/11/LocationSimulatorEN/","title":"How to modify the mobile phone positioning and simulated navigation on the iPhone?"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>How to modify the mobile phone positioning and simulated navigation on the iPhone? | zhangzhaopds</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LM84GT3DCR"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-LM84GT3DCR","only_pageview":false}</script>
+  <script src="/blogs/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/blogs/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blogs/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">zhangzhaopds</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Features"><span class="nav-number">1.</span> <span class="nav-text">Features:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#How-to-get-started"><span class="nav-number">2.</span> <span class="nav-text">How to get started:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FQA"><span class="nav-number">3.</span> <span class="nav-text">FQA</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="张子布"
+      src="/blogs/images/avatar.PNG">
+  <p class="site-author-name" itemprop="name">张子布</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/blogs/archives/">
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="mailto:zhangzhaopds@icloud.com" title="E-Mail → mailto:zhangzhaopds@icloud.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://zhangzhaopds.github.io/blogs/2023/08/11/LocationSimulatorEN/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blogs/images/avatar.PNG">
+      <meta itemprop="name" content="张子布">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhangzhaopds">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="How to modify the mobile phone positioning and simulated navigation on the iPhone? | zhangzhaopds">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          How to modify the mobile phone positioning and simulated navigation on the iPhone?
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-08-11 23:34:28" itemprop="dateCreated datePublished" datetime="2023-08-11T23:34:28+08:00">2023-08-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-11-29 09:04:52" itemprop="dateModified" datetime="2024-11-29T09:04:52+08:00">2024-11-29</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><a target="_blank" rel="noopener" href="https://zhangzhaopds.cn/blogs/2023/08/11/LocationSimulator/">中文</a></p>
+<p><strong><a target="_blank" rel="noopener" href="https://apps.apple.com/app/id6459020120">iNavMock</a></strong> is a powerful macOS app designed for iPhone users to modify the positioning of the phone and provide a realistic simulated navigation experience. Whether it’s for privacy protection, testing location-sensitive apps, or just for fun, iNavMock has you covered.</p>
+<h4 id="Features"><a href="#Features" class="headerlink" title="Features:"></a>Features:</h4><ol>
+<li><p><strong>Location modification</strong>: iNavMock allows you to modify your iPhone location, you can choose any location as your current location, whether it is for international travel, location testing or other purposes, it can be easily realized.</p>
+</li>
+<li><p><strong>Mock navigation</strong>: Not only positioning modification, iNavMock also provides a realistic mock navigation function. You can set the start point, end point, and way point, and the app will simulate a real navigation experience, including route planning, navigation instructions, etc., to provide you with a comprehensive navigation experience.</p>
+</li>
+<li><p><strong>Privacy protection</strong>: protecting personal privacy is our top priority. iNavMock only simulates the location and does not obtain your real location information, ensuring that your privacy is respected and protected to the greatest extent.</p>
+</li>
+<li><p><strong>Easy to use</strong>: The user interface of iNavMock is simple and intuitive, no matter you are a novice or an experienced user, you can easily get started. The operation is simple, just a few steps to set up, and you can start to simulate navigation.</p>
+</li>
+<li><p><strong>Various application scenarios</strong>: iNavMock has a wide range of applications in many fields. Whether you’re a developer needing to test location-dependent apps, or a regular user just for fun, iNavMock has you covered.</p>
+</li>
+</ol>
+<h4 id="How-to-get-started"><a href="#How-to-get-started" class="headerlink" title="How to get started:"></a>How to get started:</h4><p>~~<strong>iOS 17 is not supported</strong> ~~</p>
+<ol>
+<li><p>Download and install <strong>iNavMock</strong> app to your macOS device. <a target="_blank" rel="noopener" href="https://apps.apple.com/app/id6459020120">Download iNavMock</a></p>
+</li>
+<li><p>Download and install the device connection tool <strong>Runner</strong> to your macOS device. iNavMock is not directly connected to the phone, so it needs to be used in conjunction with the Runner. <a target="_blank" rel="noopener" href="https://zhangzhaopds.oss-cn-beijing.aliyuncs.com/Runner.dmg">Download Runner</a></p>
+</li>
+<li><p>Connect your iPhone to the computer, and make sure <strong>Developer Mode</strong> is <strong>turned on</strong>.</p>
+</li>
+<li><p>Open the iNavMock app, select the location you want to modify or set the start and end points of the simulated navigation on the interface.</p>
+</li>
+<li><p>Start to experience virtual position modification and simulated navigation.</p>
+</li>
+<li><p>For more help, email <a href="mailto:&#x7a;&#x68;&#x61;&#x6e;&#x67;&#x7a;&#104;&#x61;&#x6f;&#112;&#100;&#x73;&#x40;&#x67;&#x6d;&#97;&#x69;&#x6c;&#46;&#99;&#111;&#x6d;">&#x7a;&#x68;&#x61;&#x6e;&#x67;&#x7a;&#104;&#x61;&#x6f;&#112;&#100;&#x73;&#x40;&#x67;&#x6d;&#97;&#x69;&#x6c;&#46;&#99;&#111;&#x6d;</a>.</p>
+</li>
+</ol>
+<p><img src="https://zhangzhaopds.oss-cn-beijing.aliyuncs.com/images/iNavMock_en.png" alt="Preview image"></p>
+<h4 id="FQA"><a href="#FQA" class="headerlink" title="FQA"></a>FQA</h4><ol>
+<li>How to enable developer mode on iOS16 phone?<blockquote>
+<p>Go to iPhone’s “Settings” -&gt; “Privacy &amp; Security” -&gt; “Developer Mode” -&gt; Turn on “Developer Mode”</p>
+</blockquote>
+</li>
+<li>Is it useful for all apps to modify the location?<blockquote>
+<p>Yes, the modification is the positioning of the entire mobile phone, which is global</p>
+</blockquote>
+</li>
+<li>Does the phone need to be jailbroken?<blockquote>
+<p>Don’t need</p>
+</blockquote>
+</li>
+<li>Why do I need to enable the developer mode?<blockquote>
+<p>It is based on Apple’s security considerations, click <a target="_blank" rel="noopener" href="https://developer.apple.com/documentation/xcode/enabling-developer-mode-on-a-device">Learn more</a></p>
+</blockquote>
+</li>
+<li>How to restore the phone location?<blockquote>
+<p>In Runner, select the connected device and click Reset Location to reset the location</p>
+</blockquote>
+</li>
+</ol>
+<p>Whether you’re developing apps, protecting privacy, or just for fun, iNavMock will be your right-hand man. Download now and start exploring your virtual location journey!</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/blogs/2023/02/17/RxSwiftOperators/" rel="prev" title="RxSwift操作符">
+                  <i class="fa fa-chevron-left"></i> RxSwift操作符
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/blogs/2023/08/11/LocationSimulator/" rel="next" title="如何在iPhone手机上修改手机定位和模拟导航？">
+                  如何在iPhone手机上修改手机定位和模拟导航？ <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">张子布</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/blogs/js/comments.js"></script><script src="/blogs/js/utils.js"></script><script src="/blogs/js/motion.js"></script><script src="/blogs/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
